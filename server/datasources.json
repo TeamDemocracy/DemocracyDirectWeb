@@ -1,0 +1,13 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+    "cloudant":{
+    "database":"democracy-direct-db",
+    "username":VCAP_SERVICES.cloudantNoSQLDB[0].credentials.username,
+    "password":VCAP_SERVICES.cloudantNoSQLDB[0].credentials.password,
+    "name": "cloudant",
+    "connector": "cloudant"
+    }
+}
