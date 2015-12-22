@@ -49,12 +49,11 @@ function getReports(fromDate, toDate, callbackFn) {
 	function processResponse(error, response, body) {
 		var documents = response[0];
 
-		var count = 0;
-		var goal = documents.length;
+		var nResolved = 0;
 
 		var reports = [];
 
-		for (var i = 0; i < goal; i++) {
+		for (var i = 0; i < documents.length; i++) {
 
 			var d = documents[i];
 
@@ -81,7 +80,7 @@ function getReports(fromDate, toDate, callbackFn) {
 					report.refraining = $('.summa_avstar').html();
 					report.absent = $('.summa_franvarande').html();
 
-					if (++count >= goal) {
+					if (++nResolved >= documents.length) {
 						// All reports have been resolved
 						callbackFn(reports);
 					}
