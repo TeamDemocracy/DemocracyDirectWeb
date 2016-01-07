@@ -1,0 +1,14 @@
+<div>
+<accounts-ui></accounts-ui>
+<parties-form></parties-form>
+
+  <ul>
+    <li *ngFor="#party of parties">
+      <a [routerLink]="['/PoliticianDetails', {politicianId: party._id}]">{{party.text}}</a>
+      <p>{{party.text}}</p>
+      <p>{{party.userId}}</p>
+      <button (click)="removeComment(party)">X</button>
+    </li>
+  </ul>
+
+</div>
