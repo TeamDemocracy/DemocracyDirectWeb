@@ -13,18 +13,18 @@ import {PoliticianDetails} from 'client/politician-details/politician-details';
 
 
 @Component({
-    selector: 'app'
+	selector: 'app'
 })
 @View({
-  template: '<router-outlet></router-outlet>',
-  directives: [ROUTER_DIRECTIVES]
+	template: '<router-outlet></router-outlet>',
+	directives: [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
-    { path: '/', as: 'PoliticianList', component: PoliticianList },
-    { path: '/PoliticianDetails/:politicianId', as: 'PoliticianDetails', component: PoliticianDetails }
+	{ path: '/', as: 'PoliticianList', component: PoliticianList },
+	{ path: '/PoliticianDetails/:politicianId', as: 'PoliticianDetails', component: PoliticianDetails }
 ])
-class democracyDirect {
-}
+
+class democracyDirect { }
 
 bootstrap(democracyDirect,[ROUTER_PROVIDERS,provide(APP_BASE_HREF, { useValue: '/' })]);

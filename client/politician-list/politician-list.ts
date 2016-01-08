@@ -13,30 +13,31 @@ import {Comments} from 'collections/all';
 import {PartiesForm} from 'client/parties-form/parties-form';
 
 @Component({
-    selector: 'app'
+	selector: 'app'
 })
 @View({
-    templateUrl: 'client/politician-list/politician-list.html',
-    directives: [NgFor, PartiesForm,RouterLink,AccountsUI]
+	templateUrl: 'client/politician-list/politician-list.html',
+	directives: [NgFor, PartiesForm,RouterLink,AccountsUI]
 })
 export class PoliticianList extends MeteorComponent {
-    parties: Mongo.Cursor<Object>;
+	parties: Mongo.Cursor<Object>;
 
-    constructor() {
-        super();
-        this.subscribe('Comment', () => {
-          this.autorun(() => {
-                this.parties = Comments.find({},{sort:{createdAt:-1}});
-                console.log(this.parties);
-            },   true);
-       }, true);
-    }
-    removeComment(comment){
-      try{
-        Meteor.call('removeComment',comment._id);
-      }catch (err){
-        console.log(err);
-      }
+	constructor() {
+		super();
+		this.subscribe('Comment', () => {
+			this.autorun(() => {
+				this.parties = Comments.find({},{sort:{createdAt:-1}});
+				console.log(this.parties);
+			},   true);
+		}, true);
+	}
+	removeComment(comment){
+		try {
+			Meteor.call('removeComment',comment._id);
+		}
+		catch (err) {
+			console.log(err);
+		}
 
-    }
+	}
 }
