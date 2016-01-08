@@ -1,11 +1,11 @@
 
-export class Country implements CountryInterface{
+export class Country implements ICountry {
     name:string;
     synchronizeOurDataWithSource(){
 
     }
 }
-export interface CountryInterface {
+export interface ICountry {
     name:string;
     synchronizeOurDataWithSource():void;
 }

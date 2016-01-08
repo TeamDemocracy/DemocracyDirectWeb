@@ -1,3 +1,6 @@
+// To make compiler happy
+export var temp: any = undefined;
+
 /*import {Role,User,RoleMapping} from 'collections/all';
 
 var adminRole = new Role({
