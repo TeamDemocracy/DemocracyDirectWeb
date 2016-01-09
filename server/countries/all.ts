@@ -1,4 +1,9 @@
 
 //Here is where we re-export every country class
 //This is done to simplify importing all the country classes throughout the entire project
-export {Sweden} from './sweden';
+import {ICountry} from './country';
+import {sweden} from './sweden';
+
+export var Countries:ICountry[] = [
+	sweden
+];

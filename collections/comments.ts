@@ -57,16 +57,16 @@ if (Meteor.isServer){
 By extending the Comment Astro class I make sure that all comments live inside the same collection
 */
 export var BillComment = Comment.inherit({
-  name: 'BillComment',
-  fields: {
-      billId:'string'
-  },
-  behaviors: ['timestamp']
+	name: 'BillComment',
+	fields: {
+		billId:'string'
+	},
+	behaviors: ['timestamp']
 });
 export var DebateComment = Comment.inherit({
-  name: 'DebateComment',
-  fields: {
-      billId:'string'
-  },
-  behaviors: ['timestamp']
+	name: 'DebateComment',
+	fields: {
+		billId:'string'
+	},
+	behaviors: ['timestamp']
 });
