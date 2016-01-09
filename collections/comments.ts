@@ -4,8 +4,7 @@
 export var Comments = new Mongo.Collection('comments');
 
 declare var Astro;
-var acl = new ACL();
-    acl.get('controls').push(new OLC({read:true}));
+
 
 export var Comment = Astro.Class({
   name: 'Comment',
@@ -30,14 +29,20 @@ export var Comment = Astro.Class({
       foreign: 'parentId'
     }
   },
-  behaviors: ['timestamp'],
-  security:{
-    implementsACL:true,
-    defaultACL:acl //if defaultACL is not configured meteor-astronomy-security will add the property and set it to new ACL()
-  }
-
+  behaviors: ['timestamp']
 });
 if (Meteor.isServer){
+	var acl = new ACL();
+	    acl.get('controls').push(new OLC({read:false}));
+		var role = Role.find({name:'citizen'});
+		acl.get('controls').push(new OLC({type:{name:'role',id:role._id},read:true}));
+	Comment.extend({
+	    security:{
+	      implementsACL:true,
+	      defaultACL:acl //if defaultACL is not configured meteor-astronomy-security will add the property and set it to new ACL()
+	    }
+	});
+
   Comment.setPublicReadAccess(true);
   //Comment.setPublicWriteAccess(false); the default value for any class level control i false
   Comment.setRoleWriteAccess('citizen',true); // if initiated the clc will start of by being false for eveyrthing
