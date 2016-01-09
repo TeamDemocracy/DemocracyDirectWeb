@@ -4,6 +4,6 @@
 import {ICountry} from './country';
 import {sweden} from './sweden';
 
-export var Countries:ICountry[] = [
-	sweden
+export var Countries: ICountry[] = [
+    sweden
 ];
