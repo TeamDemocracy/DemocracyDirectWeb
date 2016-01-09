@@ -7,39 +7,39 @@ import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators} from 'a
 
 
 @Component({
-    selector: 'parties-form'
+	selector: 'parties-form'
 })
 @View({
-    templateUrl: 'client/parties-form/parties-form.html',
-    directives: [FORM_DIRECTIVES]
+	templateUrl: 'client/parties-form/parties-form.html',
+	directives: [FORM_DIRECTIVES]
 })
 export class PartiesForm {
-    partiesForm: ControlGroup;
+	partiesForm: ControlGroup;
 
-    constructor() {
-        var fb = new FormBuilder();
-        this.partiesForm = fb.group({
-            text: ['', Validators.required]
-        });
-    }
+	constructor() {
+		var fb = new FormBuilder();
+		this.partiesForm = fb.group({
+			text: ['', Validators.required]
+		});
+	}
 
-    addParty(party) {
-        console.log(party);
-        if (this.partiesForm.valid) {
-            console.log("is valid");
+	addParty(party) {
+		console.log(party);
+		if (this.partiesForm.valid) {
+			console.log("is valid");
 
-            try {
-                Meteor.call('insertComment', {
-                    text: party.text,
-                    userId: Meteor.userId()
-                })
-            }
-            catch (err) {
-                console.log(err);
-            }
+			try {
+				Meteor.call('insertComment',{
+					text: party.text,
+					userId: Meteor.userId()
+				})
+			}
+			catch (err){
+				console.log(err);
+			}
 
 
-            (<Control>this.partiesForm.controls['text']).updateValue('');
-        }
-    }
+			(<Control>this.partiesForm.controls['text']).updateValue('');
+		}
+	}
 }

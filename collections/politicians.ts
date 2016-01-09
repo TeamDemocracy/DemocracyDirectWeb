@@ -5,12 +5,12 @@ export var Politicians = new Mongo.Collection('politicians');
 
 
 export var Politician = Astro.Class({
-    name: 'Politician',
-    collection: Politicians,
-    fields: {
-        firstname: 'string',
-        lastname: 'string',
-        dob: 'date'
-    },
-    behaviors: ['timestamp']
+	name: 'Politician',
+	collection: Politicians,
+	fields: {
+		firstname:'string',
+		lastname:'string',
+		dob:'date'
+	},
+	behaviors: ['timestamp']
 });
