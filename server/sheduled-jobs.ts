@@ -17,16 +17,15 @@ export module BackgroundJobs {
 				return parser.text('every 15 mins');//'every hour starting on the ' + index + 'th min');
 			},
 			job: function() {
-				//Get all the country functions
-				//console.log(Countries);
 				for (var country of Countries) {
-					console.log(country)
-					country.synchronizeOurDataWithSource();
+					console.log('synchronizing data for ' + country.name + '...');
+					country.synchronizeBills();
 				}
 				return "yay"
 			}
 		});
 
 		SyncedCron.start();
+
 	}
 }
