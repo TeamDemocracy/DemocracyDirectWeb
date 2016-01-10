@@ -3,6 +3,7 @@ In this document you will put the features that have to be coded for a specific 
 
 ## Version 1.0.0
 ###Server
+- [ ] Synchronize data from Riksdagen (in progress...)
 
 ###Client
 
