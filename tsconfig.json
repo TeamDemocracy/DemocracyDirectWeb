@@ -3,6 +3,6 @@
 		"module": "system",
 		"sourceMap": true,
 		"experimentalDecorators": true,
-		"__noImplicitAny": true
+		"noImplicitAny": false,
 	}
 }
