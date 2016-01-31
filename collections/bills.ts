@@ -8,7 +8,12 @@ export var Bill = Astro.Class({
 	name: 'Bill',
 	collection: Bills,
 	fields: {
-		title:'string'
+		_id: 'string',
+		title: 'string',
+		index: { 
+			type: 'number',
+			index: -1,
+		}
 	},
 	relations: {
 		comments: {
@@ -21,5 +26,5 @@ export var Bill = Astro.Class({
 	behaviors: ['timestamp']
 });
 
-var bill = new Bill();
-bill.save();
+// var bill = new Bill();
+// bill.save();

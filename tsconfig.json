@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "system",
+		"module": true,
 		"sourceMap": true,
 		"experimentalDecorators": true,
 		"noImplicitAny": false,

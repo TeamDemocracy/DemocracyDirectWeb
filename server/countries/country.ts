@@ -1,5 +1,6 @@
 
 export interface ICountry {
-	name:string;
-	synchronizeBills():void;
+	name: string;
+	indexBills(): void;
+	synchronizeBills(): void;
 }
