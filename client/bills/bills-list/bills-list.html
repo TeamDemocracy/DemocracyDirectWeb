@@ -1,5 +1,19 @@
 <ul>
-	<li ng-repeat="bill in vm.bills">
+	<li dir-paginate="bill in vm.bills | itemsPerPage: vm.perPage" total-items="vm.billCount">
 		<a ng-bind="bill.title" ui-sref="^.details({ billId: bill._id })"></a>
 	</li>
 </ul>
+<style>
+	ul.pagination li {
+		display: inline-block;
+		padding: 4px 8px;
+		background-color: gray;
+	}
+	ul.pagination li a {
+		color: black;
+	}
+	ul.pagination li.active a {
+		color: white;
+	}
+</style>
+<dir-pagination-controls on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>

@@ -18,7 +18,8 @@ percolate:synced-cron
 http
 reywood:publish-composite
 angular
-autopublish
 angular:angular@1.5.0
 angularui:angular-ui-router
 angular:angular-sanitize
+angularutils:pagination
+tmeasday:publish-counts

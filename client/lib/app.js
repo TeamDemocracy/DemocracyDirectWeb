@@ -5,6 +5,7 @@
 		.module('democracy-direct', [
 			'angular-meteor',
 			'ngSanitize',
-			'ui.router'
+			'ui.router',
+			'angularUtils.directives.dirPagination'
 		]);
 })();

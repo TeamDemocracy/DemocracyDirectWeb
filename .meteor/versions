@@ -4,7 +4,7 @@ angular-templates@0.0.3
 angular:angular@1.5.0
 angular:angular-sanitize@1.5.0
 angularui:angular-ui-router@0.2.15
-autopublish@1.0.4
+angularutils:pagination@0.9.1_2
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -67,6 +67,7 @@ spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.2
 templating-tools@1.0.0
+tmeasday:publish-counts@0.7.3
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
