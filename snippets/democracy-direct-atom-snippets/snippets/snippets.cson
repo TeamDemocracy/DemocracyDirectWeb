@@ -1,0 +1,203 @@
+'.source.js':
+  'di.slashbreak':
+    'prefix': '///'
+    'body': """
+      ////////////////
+
+      $1"""
+
+  'di.component':
+    'prefix': 'dicomponent'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.component('di${2:Component}', {
+      			templateUrl: 'client/${3:path}',
+      			controller: ${2:Component}Controller,
+      			controllerAs: 'vm',
+      			bindings: {$4
+      			}
+      		});
+
+      	/* @ngInject */
+      	function ${2:Component}Controller(${5:\$scope, \$reactive}) {
+      		var vm = this;${5:
+      		\$reactive(vm).attach(\$scope);}
+
+      		vm.\$onInit = init;
+
+      		////////////////
+
+      		function init() {
+      		}
+      	}
+      })();$6
+    """
+
+  'di.config':
+    'prefix': 'diconfig'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.config(config);
+
+      	/* @ngInject */
+      	function config() {$2
+      	}
+      })();$3
+    """
+
+  'di.controller':
+    'prefix': 'dicontroller'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.controller('$2Controller', $2Controller);
+
+      	/* @ngInject */
+      	function $2Controller(${3:\$scope, \$reactive}) {
+      		var vm = this;${3:
+      		\$reactive(vm).attach(\$scope);}
+
+      		vm.\$onInit = init;
+
+      		////////////////
+
+      		function init() {
+      		}
+      	}
+      })();$4
+    """
+
+  'di.directive':
+    'prefix': 'didirective'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.directive('di${2:Directive}', di${2:Directive});
+
+      	/* @ngInject */
+      	function di${2:Directive}() {
+      		var directive = {
+      			bindToController: true,
+      			controller: ${2:Directive}Controller,
+      			controllerAs: 'vm',
+      			link: link,
+      			restrict: 'A',
+      			scope: {$3
+      			}
+      		};
+      		return directive;
+
+      		function link(scope, element, attrs) {
+      		}
+      	}
+
+      	/* @ngInject */
+      	function ${2:Directive}Controller(${4:\$scope, \$reactive}) {
+      		var vm = this;${4:
+      		\$reactive(vm).attach(\$scope);}
+
+      		vm.\$onInit = init;
+
+      		////////////////
+
+      		function init() {
+      		}
+      	}
+      })();$5
+    """
+
+  'di.factory':
+    'prefix': 'difactory'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.factory('${2:factory}', ${2:factory});
+
+      	/* @ngInject */
+      	function ${2:factory}(${3:dependencies}) {
+      		var service = {
+      			${4:func}: ${4:func}
+      		};
+      		return service;
+
+      		////////////////
+
+      		function ${4:func}() {
+      		}
+      	}
+      })();$5
+    """
+
+  'di.filter':
+    'prefix': 'difilter'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.filter('${2:filter}', ${2:filter});
+
+      	function ${2:filter}() {
+      		return ${2:filter}Filter;
+
+      		////////////////
+
+      		function ${2:filter}Filter(${3:params}) {
+      			return ${3:params};
+      		}
+      	}
+      })();$4
+    """
+
+  'di.module':
+    'prefix': 'dimodule'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}', [
+      			'${2:dependencies}'
+      		]);
+      })();$3
+    """
+
+  'di.run':
+    'prefix': 'dirun'
+    'body': """
+      (function() {
+      	'use strict';
+
+      	angular
+      		.module('${1:democracy-direct}')
+      		.run(run);
+
+      	/* @ngInject */
+      	function run() {$2
+      	}
+      })();$3
+    """
+
+  'di.service':
+    'prefix': 'diservice'
+    'body': """
+      // Please use difactory instead
+    """

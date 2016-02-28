@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[(function() {
+	'use strict';
+
+	angular
+		.module('${1:democracy-direct}')
+		.directive('di${2:Directive}', di${2:Directive});
+
+	/* @ngInject */
+	function di${2:Directive}() {
+		var directive = {
+			bindToController: true,
+			controller: ${2/(.*)/\u$&/g}Controller,
+			controllerAs: 'vm',
+			link: link,
+			restrict: 'A',
+			scope: {$3
+			}
+		};
+		return directive;
+
+		function link(scope, element, attrs) {
+		}
+	}
+
+	/* @ngInject */
+	function ${2/(.*)/\u$&/g}Controller(${4/^.+/\$scope, \$reactive/g}) {
+		var vm = this;${4:
+		\$reactive(vm).attach(\$scope);}
+
+		vm.\$onInit = init;
+
+		////////////////
+
+		function init() {
+		}
+	}
+})();
+]]></content>
+	<tabTrigger>didirective</tabTrigger>
+	<scope>text.plain, source.js</scope>
+</snippet>

@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[(function() {
+	'use strict';
+
+	angular
+		.module('${1:democracy-direct}')
+		.controller('$2Controller', $2Controller);
+
+	/* @ngInject */
+	function $2Controller(${3/^.+/\$scope, \$reactive/g}) {
+		var vm = this;${3:
+		\$reactive(vm).attach(\$scope);}
+
+		vm.\$onInit = init;
+
+		////////////////
+
+		function init() {
+		}
+	}
+})();
+]]></content>
+	<tabTrigger>dicontroller</tabTrigger>
+	<scope>text.plain, source.js</scope>
+</snippet>

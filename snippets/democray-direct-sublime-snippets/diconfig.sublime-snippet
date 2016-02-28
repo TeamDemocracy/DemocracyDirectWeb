@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[(function() {
+	'use strict';
+
+	angular
+		.module('${1:democracy-direct}')
+		.config(config);
+
+	/* @ngInject */
+	function config() {$2
+	}
+})();
+]]></content>
+	<tabTrigger>diconfig</tabTrigger>
+	<scope>text.plain, source.js</scope>
+</snippet>
