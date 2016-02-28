@@ -8,7 +8,6 @@
 			controller: NavbarController,
 			controllerAs: 'vm',
 			bindings: {
-				
 			}
 		});
 
@@ -17,7 +16,7 @@
 		var vm = this;
 		$reactive(vm).attach($scope);
 
-		vm.$init = init;
+		vm.$onInit = init;
 
 		////////////////
 

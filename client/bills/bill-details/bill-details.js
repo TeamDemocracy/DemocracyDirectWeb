@@ -8,7 +8,6 @@
 			controller: BillDetailsController,
 			controllerAs: 'vm',
 			bindings: {
-				
 			}
 		});
 
@@ -23,7 +22,7 @@
 			}
 		})
 
-		vm.$init = init;
+		vm.$onInit = init;
 
 		////////////////
 
