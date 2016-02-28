@@ -1,10 +1,10 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('democracy-direct', [
-      'angular-meteor',
-      'ngSanitize',
-      'ui.router'
-    ]);
+	angular
+		.module('democracy-direct', [
+			'angular-meteor',
+			'ngSanitize',
+			'ui.router'
+		]);
 })();
