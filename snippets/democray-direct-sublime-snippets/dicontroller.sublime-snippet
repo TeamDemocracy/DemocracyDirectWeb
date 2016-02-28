@@ -8,14 +8,14 @@
 
 	/* @ngInject */
 	function $2Controller(${3/^.+/\$scope, \$reactive/g}) {
-		var vm = this;${3:
-		\$reactive(vm).attach(\$scope);}
+		var vm = this;
 
-		vm.\$onInit = init;
+		activate();
 
 		////////////////
 
-		function init() {
+		function activate() {${3:
+			\$reactive(vm).attach(\$scope);}
 		}
 	}
 })();

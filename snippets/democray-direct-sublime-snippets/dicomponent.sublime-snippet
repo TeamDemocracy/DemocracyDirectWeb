@@ -14,14 +14,14 @@
 
 	/* @ngInject */
 	function ${2/(.*)/\u$&/g}Controller(${5/^.+/\$scope, \$reactive/g}) {
-		var vm = this;${5:
-		\$reactive(vm).attach(\$scope);}
+		var vm = this;
 
-		vm.\$onInit = init;
+		activate();
 
 		////////////////
 
-		function init() {
+		function activate() {${5:
+			\$reactive(vm).attach(\$scope);}
 		}
 	}
 })();

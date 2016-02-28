@@ -14,7 +14,6 @@
 	/* @ngInject */
 	function BillsListController($scope, $reactive) {
 		var vm = this;
-		$reactive(vm).attach($scope);
 
 		vm.bills = [];
 		vm.billCount = 0;
@@ -24,12 +23,15 @@
 			title: 1
 		};
 
-		vm.$onInit = init;
 		vm.pageChanged = pageChanged;
+
+		activate();
 
 		////////////////
 
-		function init() {
+		function activate() {
+			$reactive(vm).attach($scope);
+
 			vm.subscribe('bills', () => {
 				return [
 					{

@@ -14,13 +14,13 @@
 	/* @ngInject */
 	function NavbarController($scope, $reactive) {
 		var vm = this;
-		$reactive(vm).attach($scope);
 
-		vm.$onInit = init;
+		activate();
 
 		////////////////
 
-		function init() {
+		function activate() {
+			$reactive(vm).attach($scope);
 		}
 	}
 })();

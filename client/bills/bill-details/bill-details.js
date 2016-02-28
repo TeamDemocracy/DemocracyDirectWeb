@@ -14,19 +14,21 @@
 	/* @ngInject */
 	function BillDetailsController($scope, $reactive, $stateParams) {
 		var vm = this;
-		$reactive(vm).attach($scope);
 
-		vm.helpers({
-			bill: () => {
-				return Bills.findOne({ _id: $stateParams.billId });
-			}
-		})
-
-		vm.$onInit = init;
+		activate();
 
 		////////////////
 
-		function init() {
+		function activate() {
+			$reactive(vm).attach($scope);
+
+			vm.subscribe('bills');
+
+			vm.helpers({
+				bill: () => {
+					return Bills.findOne({ _id: $stateParams.billId });
+				}
+			});
 		}
 	}
 })();
