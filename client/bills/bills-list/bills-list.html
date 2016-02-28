@@ -1,0 +1,5 @@
+<ul>
+  <li ng-repeat="bill in vm.bills">
+    <a ng-bind="bill.title" ui-sref="^.details({ billId: bill._id })"></a>
+  </li>
+</ul>

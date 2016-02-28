@@ -1,8 +1,0 @@
-{
-	"compilerOptions": {
-		"module": true,
-		"sourceMap": true,
-		"experimentalDecorators": true,
-		"noImplicitAny": false,
-	}
-}
