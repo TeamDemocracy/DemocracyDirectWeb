@@ -13,22 +13,27 @@ Meteor.startup(function() {
 	var nextIndex = 0;
 	var progress = new Progress();
 
-	if (Bills.find().count() > 0) {
-		Bills._dropCollection();
-	}
-
-	index();
+	init();
 
 	////////////////
 
+	function init() {
+		if (Bills.find().count() < 1) {
+			console.log('Bills collection is empty. It will now initialize.');
+			console.log('Please allow a couple of minutes for it to finnish.');
+			console.log();
+			index();
+		}
+	}
+
 	function index() {
-		yearBegin = 2014;//getYearBegin();
-		yearEnd = 2014;//getYearEnd();
+		yearBegin = 2010;//getYearBegin();
+		yearEnd = getYearEnd();
 
 		dbBillCount = getBillCount(yearBegin, yearEnd);
 		progress.reset(dbBillCount);
 
-		console.log("Indexing of", dbBillCount, "bills between", yearBegin, "and", yearEnd, "will now begin...");
+		console.log('Indexing', dbBillCount, 'bills (' + yearBegin + '-' + yearEnd + ')');
 
 		for (var year = yearBegin; year <= yearEnd; year++) {
 
@@ -58,8 +63,11 @@ Meteor.startup(function() {
 				_id: doc[DOCUMENT_ID_KEY],
 				index: nextIndex++,
 				title: doc[DOCUMENT_TITLE_KEY],
-				summary: doc[DOCUMENT_SUMMARY_KEY]
+				summary: doc[DOCUMENT_SUMMARY_KEY],
+				date: new Date(doc[DOCUMENT_DATE_KEY])
 			};
+
+			bill.isReady = !!bill.summary;
 
 			Bills.insert(bill);
 

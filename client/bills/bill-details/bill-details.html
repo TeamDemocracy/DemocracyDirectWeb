@@ -1,5 +1,6 @@
 <p><button type="button" ui-sref="^.list">&lt;&lt; Tillbaka</button></p>
 <article>
 	<h2 ng-bind="vm.bill.title"></h2>
+	<small ng-bind="vm.bill.date | date:'yyyy-MM-dd'"></small>
 	<p ng-bind-html="vm.bill.summary"></p>
 </article>

@@ -20,7 +20,7 @@
 		vm.perPage = 20;
 		vm.page = 1;
 		vm.sort = {
-			title: 1
+			date: -1
 		};
 
 		vm.pageChanged = pageChanged;
