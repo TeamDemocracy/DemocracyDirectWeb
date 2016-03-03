@@ -10,7 +10,7 @@ Progress = (function() {
 		reset: reset,
 		tick: tick,
 		done: done,
-	}
+	};
 
 	return Progress;
 
@@ -32,6 +32,7 @@ Progress = (function() {
 	}
 
 	function done(i) {
+		i = i || this.target;
 		var now = Date.now();
 		render.call(this, i, now);
 	}
@@ -54,7 +55,7 @@ Progress = (function() {
 		return str;
 	}
 
-	function millisecondsToString(milliseconds: number) {
+	function millisecondsToString(milliseconds) {
 		var hours = Math.floor(milliseconds / 1000 / 60 / 60);
 		var minutes = Math.floor(milliseconds / 1000 / 60) - hours * 60;
 		var seconds = Math.floor(milliseconds / 1000) - (hours * 60 + minutes) * 60;
