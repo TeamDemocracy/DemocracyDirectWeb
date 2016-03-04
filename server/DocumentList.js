@@ -108,7 +108,7 @@ DocumentList = (function() {
 	}
 
 	function _pageCount() {
-		return this.count() / HITS_PER_PAGE;
+		return Math.ceil(this.count() / HITS_PER_PAGE);
 	}
 
 	function _getDateMin() {
