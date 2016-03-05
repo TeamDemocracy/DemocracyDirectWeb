@@ -60,7 +60,7 @@ DocumentList = (function() {
 				var data = partial._query(page, HITS_PER_PAGE, 'asc');
 				var documents = data[DOCUMENT_KEY];
 
-				if (typeof documents === 'object') {
+				if (!Array.isArray(documents)) {
 					// If the page contains only one document
 					documents = [documents];
 				}
