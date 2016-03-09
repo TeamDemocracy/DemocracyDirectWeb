@@ -4,7 +4,7 @@
 	angular
 		.module('democracy-direct')
 		.component('diBillsList', {
-			templateUrl: 'client/bills/bills-list/bills-list.html',
+			templateUrl: 'client/components/bills/bills-list/bills-list.html',
 			controller: BillsListController,
 			controllerAs: 'vm',
 			bindings: {

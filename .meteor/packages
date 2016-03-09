@@ -23,3 +23,6 @@ angularui:angular-ui-router
 angular:angular-sanitize
 angularutils:pagination
 tmeasday:publish-counts
+angular:angular-material
+less
+accounts-password

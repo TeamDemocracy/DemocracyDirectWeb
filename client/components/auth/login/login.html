@@ -1,0 +1,33 @@
+<md-content layout="row" layout-align="center center" layout-fill layout-margin>
+	<div layout="column" flex="100" class="big-logo">
+		<h1>DEMOCRACY</h1>
+		<h2>DIRECT</h2>
+		<p>
+			Möjligheten att påverka har aldrig varit större!
+		</p>
+	</div>
+	<div layout="row" flex="100" layout-align="center center">
+    <div layout="column" flex="70" layout-margin layout-padding>
+      <form name="loginForm" layout="column" layout-fill layout-padding layout-margin>
+        <md-input-container>
+          <label> Mejladdress </label>
+          <input type="text" ng-model="login.credentials.email" aria-label="email" required/>
+        </md-input-container>
+        <md-input-container>
+          <label> Lösenord </label>
+          <input type="password" ng-model="login.credentials.password" aria-label="password" required/>
+        </md-input-container>
+		<md-button class="md-raised md-accent md-hue-1" ng-click="login.login()" aria-label="login" ng-disabled="login.loginForm.$invalid()">
+			Logga in
+		</md-button>
+      </form>
+      <md-toolbar ng-show="login.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+        <p class="md-body-1">{{ login.error }}</p>
+      </md-toolbar>
+      <div layout="row" layout-align="space-between center">
+		<a class="md-button" href="/resetpw">Glömt lösenordet?</a>
+        <a class="md-button" href="/register">Registrera dig</a>
+      </div>
+    </div>
+</div>
+</md-content>

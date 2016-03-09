@@ -3,6 +3,7 @@
 
 	angular
 		.module('democracy-direct', [
+			'ngMaterial',
 			'angular-meteor',
 			'ngSanitize',
 			'ui.router',
