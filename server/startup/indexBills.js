@@ -19,16 +19,22 @@ Meteor.startup(function() {
 		SyncedCron.add({
 			name: 'Check for new bills',
 			schedule: function(parser) {
-				return parser.text('now and every 10 minutes');
+				return parser.text('every 1 minutes');
 			},
 			job: indexNew
 		});
 		SyncedCron.start();
+		var someBills = Bills.find({}, { skip: 15000, limit: 100 });
+		synchronizeCursor(someBills);
 	}
 
 	function getLatestLocalBill() {
 		return Bills.findOne({}, { sort: { date: -1 } });
 	}
+
+	// ====================
+	// ===== Indexing =====
+	//=====================
 
 	function indexNew() {
 		var latestBill = getLatestLocalBill();
@@ -63,6 +69,23 @@ Meteor.startup(function() {
 			bill.isReady = !!bill.summary;
 
 			Bills.insert(bill);
+		});
+
+		progress.done();
+	}
+
+	// ===========================
+	// ===== Synchronization =====
+	// ===========================
+
+	function synchronizeCursor(cursor) {
+		var progress = new Progress(100);
+
+		cursor.forEach(function(bill, i) {
+			progress.tick(i);
+			var id = bill._id;
+			var documentStatus = new DocumentStatus(id);
+			documentStatus.synchronizeVotings();
 		});
 
 		progress.done();

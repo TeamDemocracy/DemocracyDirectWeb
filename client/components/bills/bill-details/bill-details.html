@@ -1,6 +1,28 @@
-<p><button type="button" ui-sref="^.list">&lt;&lt; Tillbaka</button></p>
-<article>
-	<h2 ng-bind="vm.bill.title"></h2>
-	<small ng-bind="vm.bill.date | date:'yyyy-MM-dd'"></small>
-	<p ng-bind-html="vm.bill.summary"></p>
-</article>
+<p style="padding: 0 20px"><button type="button" ui-sref="^.list">&lt;&lt; Tillbaka</button></p>
+<div style="display: flex">
+	<article style="flex: 1; padding: 20px">
+		<header>
+			<h2 ng-bind="vm.bill.title"></h2>
+			<small ng-bind="vm.bill.date | date:'yyyy-MM-dd'"></small>
+		</header>
+		<section>
+			<p ng-bind-html="vm.bill.summary"></p>
+		</section>
+		<section>
+			<h3>Resultat</h3>
+			<div ng-repeat="voting in vm.bill.votings" style="margin-bottom: 20px">
+				<strong ng-bind="voting.title"></strong>
+				<div ng-bind="voting.proposal"></div>
+				<div ng-if="::voting.result">
+					<span style="color: green">Ja: {{ voting.result.yes }}</span>
+					<span style="color: red; margin-left: 20px">Nej: {{ voting.result.no }}</span>
+					<span style="color: gray; margin-left: 20px">Avstående: {{ voting.result.refrain }}</span>
+					<span style="color: gray; margin-left: 20px">Frånvarande: {{ voting.result.absent }}</span>
+				</div>
+			</div>
+		</section>
+	</article>
+	<aside style="width: 320px; padding: 20px">
+		<h3>Debatt</h3>
+	</aside>
+</div>
