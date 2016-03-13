@@ -23,6 +23,7 @@
 			$reactive(vm).attach($scope);
 
 			vm.subscribe('bills');
+			vm.advancedVoting = false; //advancedVoting is off by default
 
 			vm.helpers({
 				bill: () => {
