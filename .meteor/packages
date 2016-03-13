@@ -26,3 +26,4 @@ tmeasday:publish-counts
 angular:angular-material
 less
 accounts-password
+angular-meteor-auth

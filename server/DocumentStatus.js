@@ -28,7 +28,7 @@ DocumentStatus = (function() {
 		if (!Array.isArray(votingsRAW) || votingsRAW.length < 1) {
 			return;
 		}
-		
+
 		var votings = votingsRAW.map(function(raw, i) {
 			// See this document for additional mappings:
 			// http://data.riksdagen.se/dokumentstatus/H101MJU2.json
@@ -39,19 +39,24 @@ DocumentStatus = (function() {
 			};
 
 			if (raw['votering_sammanfattning_html'] !== null) {
-				var rows = raw['votering_sammanfattning_html']['table']['tr'];
-				var row = rows.find(function(row) {
-					return row.hasOwnProperty('td') && row['td'][0] === "Totalt";
-				}, this);
-				if (row !== undefined) {
-					var total = row['td']
-					voting.result = {
-						yes: parseInt(total[1]),
-						no: parseInt(total[2]),
-						refrain: parseInt(total[3]),
-						absent: parseInt(total[4])
-					};
+				try{
+					var rows = raw['votering_sammanfattning_html']['table']['tr'];
+					var row = rows.find(function(row) {
+						return row.hasOwnProperty('td') && row['td'][0] === "Totalt";
+					}, this);
+					if (row !== undefined) {
+						var total = row['td']
+						voting.result = {
+							yes: parseInt(total[1]),
+							no: parseInt(total[2]),
+							refrain: parseInt(total[3]),
+							absent: parseInt(total[4])
+						};
+					}
+				}catch(err){
+					console.error(err);
 				}
+
 			}
 
 			return voting;

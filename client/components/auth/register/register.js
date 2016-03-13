@@ -15,6 +15,10 @@
 		$reactive(register).attach($scope);
 		register.credentials = {
 			username: '',
+			profile:{
+				firstName:'',
+				lastName:''
+			},
 			email: '',
 			password: ''
 		};
@@ -24,7 +28,7 @@
 				if (err) {
 					register.error = err;
 				} else {
-					$state.go('bills');
+					$state.go('bills.list');
 				}
 			});
 		};

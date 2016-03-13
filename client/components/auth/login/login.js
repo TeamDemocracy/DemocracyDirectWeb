@@ -27,7 +27,7 @@
 				if (err) {
 					login.error = err;
 				} else {
-					$state.go('bills');
+					$state.go('bills.list');
 				}
 			});
 		};
