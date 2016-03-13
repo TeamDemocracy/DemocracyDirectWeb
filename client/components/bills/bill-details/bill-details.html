@@ -1,106 +1,51 @@
-<md-content>
-	<md-button class="md-accent md-raised" type="button" ui-sref="^.list">Tillbaka</md-button>
-	<md-content flex-offset="10" layout="row">
-		<md-content layout="column" flex="60">
-			<md-card>
-				<md-card-title>
-					<md-card-title-text>
-						<span class="md-headline">{{vm.bill.title}}</span>
-						<span class="md-subhead" ng-bind="vm.bill.date | date:'yyyy-MM-dd'"></span>
-					</md-card-title-text>
-					<md-chips>
-						<md-chip>Tag för bill</md-chip>
-					</md-chips>
-				</md-card-title>
-				<md-card-content ng-bind-html="vm.bill.summary"></md-card-content>
-				<md-card-actions layout="row">
-					<md-button class="md-raised" style="background: green">Ja</md-button>
-					<md-button class="md-raised" style="background: red">Nej</md-button>
-					<span flex></span>
-					<md-button ng-if="vm.advancedVoting" class="md-raised" ng-click="vm.advancedVoting = !vm.advancedVoting">Enkel</md-button>
-					<md-button ng-if="!vm.advancedVoting" class="md-raised" ng-click="vm.advancedVoting = !vm.advancedVoting">Avancerad</md-button>
-				</md-card-actions>
-			</md-card>
-			<md-content style="margin-bottom: 10vh">
-				<section ng-if="!vm.advancedVoting" layout="row">
-					<div layout="column" flex="45" layout-align="start center">
-						<h3>Riksdagen</h3>
-						<div layout="row" style="width: 100%">
-							<div flex="10" style="background: green;">Ja</div>
-							<div flex="10" style="background: grey;">Avstående</div>
-							<div flex="80" style="background: red;">Nej</div>
-						</div>
-					</div>
-					<div layout="column" flex="45" flex-offset="5" layout-align="start center">
-						<div layout="row">
-							<h3>Folket</h3>
-						</div>
-						<div layout="row" style="width: 100%">
-							<div flex="60" style="background: green;">Ja</div>
-							<div flex="10" style="background: grey;">Avstående</div>
-							<div flex="30" style="background: red;">Nej</div>
-						</div>
-					</div>
-				</section>
-				<section ng-if="vm.advancedVoting">
-					<div ng-repeat="voting in vm.bill.votings" style="margin-bottom: 20px">
-						<md-card>
-							<md-card-title>
-								<md-card-title-text>
-									<span class="md-headline" ng-bind="voting.title"></span>
-									<span class="md-subhead">
-										<div ng-if="::voting.result">
-											<span style="color: green">Ja: {{ voting.result.yes }}</span>
-											<span style="color: red; margin-left: 20px">Nej: {{ voting.result.no }}</span>
-											<span style="color: gray; margin-left: 20px">Avstående: {{ voting.result.refrain }}</span>
-											<span style="color: gray; margin-left: 20px">Frånvarande: {{ voting.result.absent }}</span>
-										</div>
-									</span>
-								</md-card-title-text>
-							</md-card-title>
-							<md-card-content layout="row">
-								<div flex="60">
-									{{voting.proposal}}
-								</div>
-								<span flex="10"></span>
-								<div flex class="md-media card-media">
-									Placeholder för piechart
-								</div>
-							</md-card-content>
-							<md-card-actions layout="row" layout-align="end center">
-								<md-button>Ja</md-button>
-								<md-button>Nej</md-button>
-								<md-button>Avstå</md-button>
-							</md-card-actions>
-						</md-card>
-					</div>
-				</section>
-			</md-content>
-		</md-content>
-		<md-content layout="column" flex="25" flex-offset="5" layout-align="start center">
-			<md-card>
-				<md-card-title>
-					<md-card-title-text>
-						<span class="md-headline">Debatt</span>
-					</md-card-title-text>
-				</md-card-title>
-				<md-card-content>
-					<iframe class="md-media-xl" ng-src="https://player.vimeo.com/video/1084537" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-					<h4>Debattörer</h4>
-					<ul>
-						<li>
-							<p>
-								Maria Montasami
-							</p>
-						</li>
-						<li>
-							<p>
-								Jimmie Åkesson
-							</p>
-						</li>
-					</ul>
-				</md-card-content>
-			</md-card>
-		</md-content>
-	</md-content>
-</md-content>
+
+<md-button class="md-accent md-raised" type="button" ui-sref="^.list">Tillbaka</md-button>
+<div flex-offset="10" layout="row">
+	<div layout="column" flex="60">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">{{BillDetailCtrl.bill.title}}</span>
+					<span class="md-subhead" ng-bind="BillDetailCtrl.bill.date | date:'yyyy-MM-dd'"></span>
+				</md-card-title-text>
+				<md-chips>
+					<md-chip ng-bind="BillDetailCtrl.bill.category"></md-chip>
+				</md-chips>
+			</md-card-title>
+			<md-card-content ng-bind-html="BillDetailCtrl.bill.summary"></md-card-content>
+			<md-card-actions layout="row">
+				<md-button class="md-raised" style="background: green">Ja</md-button>
+				<md-button class="md-raised" style="background: red">Nej</md-button>
+				<span flex></span>
+				<md-button ng-if="BillDetailCtrl.advancedVoting" class="md-raised" ng-click="BillDetailCtrl.advancedVoting = !BillDetailCtrl.advancedVoting">Enkel</md-button>
+				<md-button ng-if="!BillDetailCtrl.advancedVoting" class="md-raised" ng-click="BillDetailCtrl.advancedVoting = !BillDetailCtrl.advancedVoting">Avancerad</md-button>
+			</md-card-actions>
+		</md-card>
+		<di-bill-votings advancedvoting="BillDetailCtrl.advancedVoting" billvoting="BillDetailCtrl.bill.votings"></di-bill-votings>
+	</div>
+	<div layout="column" flex="25" flex-offset="5" layout-align="start center">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Debatt</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<iframe class="md-media-xl" ng-src="https://player.vimeo.com/video/1084537" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				<h4>Debattörer</h4>
+				<ul>
+					<li>
+						<p>
+							Maria Montasami
+						</p>
+					</li>
+					<li>
+						<p>
+							Jimmie Åkesson
+						</p>
+					</li>
+				</ul>
+			</md-card-content>
+		</md-card>
+	</div>
+</div>

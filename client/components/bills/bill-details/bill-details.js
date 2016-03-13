@@ -6,7 +6,7 @@
 		.component('diBillDetails', {
 			templateUrl: 'client/components/bills/bill-details/bill-details.html',
 			controller: BillDetailsController,
-			controllerAs: 'vm',
+			controllerAs: 'BillDetailCtrl',
 			bindings: {
 			}
 		});

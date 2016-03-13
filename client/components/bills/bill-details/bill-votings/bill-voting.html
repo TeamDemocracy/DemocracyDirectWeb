@@ -1,0 +1,55 @@
+<div style="margin-bottom: 10vh">
+	<section ng-if="!VotingCtrl.advancedvoting" layout="row">
+		<div layout="column" flex="45" layout-align="start center">
+			<h3>Riksdagen</h3>
+			<div layout="row" style="width: 100%">
+				<div flex="10" style="background: green;">Ja</div>
+				<div flex="10" style="background: grey;">Avstående</div>
+				<div flex="80" style="background: red;">Nej</div>
+			</div>
+		</div>
+		<div layout="column" flex="45" flex-offset="5" layout-align="start center">
+			<div layout="row">
+				<h3>Folket</h3>
+			</div>
+			<div layout="row" style="width: 100%">
+				<div flex="60" style="background: green;">Ja</div>
+				<div flex="10" style="background: grey;">Avstående</div>
+				<div flex="30" style="background: red;">Nej</div>
+			</div>
+		</div>
+	</section>
+	<section ng-if="VotingCtrl.advancedvoting">
+		<div ng-repeat="voting in VotingCtrl.billvoting" style="margin-bottom: 20px">
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline" ng-bind="voting.title"></span>
+						<span class="md-subhead">
+							<div ng-if="::voting.result">
+								<span style="color: green">Ja: {{ voting.result.yes }}</span>
+								<span style="color: red; margin-left: 20px">Nej: {{ voting.result.no }}</span>
+								<span style="color: gray; margin-left: 20px">Avstående: {{ voting.result.refrain }}</span>
+								<span style="color: gray; margin-left: 20px">Frånvarande: {{ voting.result.absent }}</span>
+							</div>
+						</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content layout="row">
+					<div flex="60">
+						{{voting.proposal}}
+					</div>
+					<span flex="10"></span>
+					<div flex class="md-media card-media">
+						Placeholder för piechart
+					</div>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button>Ja</md-button>
+					<md-button>Nej</md-button>
+					<md-button>Avstå</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+	</section>
+</div>
