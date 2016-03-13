@@ -1,0 +1,50 @@
+<md-sidenav class="md-sidenav-right user-sidenav" md-component-id="user-sidenav" md-disable-backdrop>
+
+	<md-content>
+		<md-card>
+			<md-card-header>
+				<md-card-avatar>
+					<md-icon> person </md-icon>
+				</md-card-avatar>
+				<md-card-header-text>
+					<span class="md-title">{{us.currentUser.profile.firstName}} {{us.currentUser.profile.lastName}}</span>
+					<span class="md-subhead">{{us.currentUser.emails[0].address}}</span>
+				</md-card-header-text>
+			</md-card-header>
+			<md-card-actions layout="row" layout-align="space-between center">
+				<md-button>Profil</md-button>
+				<md-button>Inställningar</md-button>
+				<md-button>Logga ut</md-button>
+			</md-card-actions>
+			<md-divider></md-divider>
+		</md-card>
+		<md-card>
+			<md-card-header>
+				<md-card-avatar>
+					<md-icon> notifications </md-icon>
+				</md-card-avatar>
+				<md-card-header-text>
+					<span class="md-title">Notifikationer</span>
+					<span class="md-subhead">Du har 24 nya händelser</span>
+				</md-card-header-text>
+			</md-card-header>
+			<md-content>
+				<md-list>
+					<md-list-item class="md-2-line notification-list-item" ng-repeat="notification in us.notifications">
+						<md-icon class="md-avatar-icon"> {{notification.type === "comment"? 'mode_comment':notification.type === "upvote"? 'thumb_up':'thumb_down'}} </md-icon>
+						<div class="md-list-item-text">
+							<h3>{{notification.title}}</h3>
+							<p>{{notification.description}}</p>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+			<md-divider></md-divider>
+		</md-card>
+
+
+		<md-button ng-click="close()" class="md-primary">
+			Close Sidenav Right
+		</md-button>
+	</md-content>
+</md-sidenav>

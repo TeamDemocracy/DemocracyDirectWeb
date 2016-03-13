@@ -13,6 +13,14 @@
           <label> Användarnamn </label>
           <input type="text" ng-model="register.credentials.username" aria-label="username" required/>
         </md-input-container>
+		<md-input-container>
+          <label> Förnamn </label>
+          <input type="text" ng-model="register.credentials.profile.firstName" aria-label="firstname" required/>
+        </md-input-container>
+		<md-input-container>
+          <label> Efternamn </label>
+          <input type="text" ng-model="register.credentials.profile.lastName" aria-label="lastname" required/>
+        </md-input-container>
         <md-input-container >
           <label> Mejladdress </label>
           <input type="text" ng-model="register.credentials.email" aria-label="email" required/>

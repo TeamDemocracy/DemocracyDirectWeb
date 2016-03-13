@@ -1,0 +1,23 @@
+<md-toolbar>
+ <div class="md-toolbar-tools">
+   <md-button class="md-icon-button" aria-label="Settings">
+	 <md-icon> public </md-icon>
+   </md-button>
+   <h2>
+	 <span>democracy.direct</span>
+   </h2>
+   <span flex></span>
+   <md-button ui-sref="bills.list">Omröstningar</md-button>
+   <md-button ui-sref="finances">Statsfinanser</md-button>
+   <md-button ui-sref="politicians">Ledamöter</md-button>
+   <md-button ui-sref="about">Om sidan</md-button>
+   <span flex></span>
+   <md-button class="profile-button" ng-click="nb.toggleUserSidenav()" ng-show="$auth.currentUser">{{nb.anagram}}</md-button>
+   <md-button ng-hide="$auth.currentUser" class="md-raised md-accent md-hue-2" ui-sref="login" aria-label="Login">
+	   Logga in
+   </md-button>
+   <md-button ng-hide="$auth.currentUser" class="md-hue-3" ui-sref="register" aria-label="Register">
+	   Registrera dig
+   </md-button>
+ </div>
+</md-toolbar>
