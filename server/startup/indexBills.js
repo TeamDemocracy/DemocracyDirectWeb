@@ -1,5 +1,7 @@
 Meteor.startup(function() {
 
+	var FROM_DATE = new Date(2015, 0, 1);
+
 	var DATE_KEY = 'datum'; // How to get the date of a document
 	var ID_KEY = 'id'; // How to get the id of a document
 	var TITLE_KEY = 'notisrubrik'; // How to get the title of a document
@@ -21,11 +23,12 @@ Meteor.startup(function() {
 			schedule: function(parser) {
 				return parser.text('every 1 minutes');
 			},
-			job: indexNew
+			job: function() {
+				indexNew();
+				synchronizeNew();
+			}
 		});
 		SyncedCron.start();
-		var someBills = Bills.find({}, { skip: 15000, limit: 100 });
-		synchronizeCursor(someBills);
 	}
 
 	function getLatestLocalBill() {
@@ -44,7 +47,7 @@ Meteor.startup(function() {
 	}
 
 	function indexAll() {
-		indexPeriod(null, null);
+		indexPeriod(FROM_DATE, null);
 	}
 
 
@@ -61,12 +64,11 @@ Meteor.startup(function() {
 
 			var bill = {
 				_id: document[ID_KEY],
-				title: document[TITLE_KEY],
-				summary: document[SUMMARY_KEY],
-				date: new Date(document[DATE_KEY])
+				// title: document[TITLE_KEY],
+				// summary: document[SUMMARY_KEY],
+				date: new Date(document[DATE_KEY]),
+				isReady: false,
 			};
-
-			bill.isReady = !!bill.summary;
 
 			Bills.insert(bill);
 		});
@@ -78,16 +80,40 @@ Meteor.startup(function() {
 	// ===== Synchronization =====
 	// ===========================
 
-	function synchronizeCursor(cursor) {
-		var progress = new Progress(100);
+	function synchronizeNew() {
+		var bills = Bills.find({
+			isReady: false,
+		}, {
+			sort: { date: -1 }
+		});
+		synchronizeVotings(bills);
+	}
 
-		cursor.forEach(function(bill, i) {
+	function synchronizeVotings(bills, count) {
+		count = count || bills.count();
+
+		var progress = new Progress(count);
+
+		var failCount = 0;
+
+		bills.forEach(function(bill, i) {
 			progress.tick(i);
 			var id = bill._id;
-			var documentStatus = new DocumentStatus(id);
+			var documentStatus;
+			try {
+				documentStatus = new DocumentStatus(id);
+			}
+			catch(e) {
+				failCount++;
+				return;
+			}
 			documentStatus.synchronizeVotings();
 		});
 
 		progress.done();
+
+		if (failCount > 0) {
+			console.warn('Synchronization of', failCount, 'bills failed. Probably because these documents has not been published yet. Trying again later.');
+		}
 	}
 });
