@@ -5,6 +5,34 @@ DocumentStatus = (function() {
 	var BASE_URL = 'http://data.riksdagen.se/dokumentstatus/';
 	var DOCUMENT_STATUS_KEY = 'dokumentstatus';
 
+	var CATEGORIES = {
+		"AU": "Arbetsmarknad",
+		// TODO: Fix this name:
+		"CU": "Civil",
+		"FiU": "Finans",
+		"F&#246;U": "Försvar",
+		"JuU": "Lag och ordning",
+		"KU": "Konstitution",
+		"KrU": "Kultur",
+		"MJU": "Miljö- och jordbruk",
+		"NU": "Näringsliv",
+		"SkU": "Skatt",
+		"SfU": "Socialförsäkring",
+		"SoU": "Social",
+		"TU": "Trafik",
+		"UbU": "Utbildning",
+		"UU": "Utrikes",
+		"JuSoU": "JuSoU",
+		"KUU": "KUU",
+		"UF&#246;U": "UFöU",
+		"UMJU": "UMJU",
+		"USoU": "USoU",
+		"JoU": "Miljö- och jordbruk", // -1997/98
+		"BoU": "Bostad", // -2005/06
+		"LU": "Lag och ordning", // -2005/06
+		"EUN": "EU",
+	};
+
 	function DocumentStatus(id) {
 		this.id = id;
 		this._data = this._query();
@@ -43,8 +71,12 @@ DocumentStatus = (function() {
 		if (!titleObj) return;
 		var summary = summaryObj['text'];
 
-		var category = this._getNestedProperty(this._data, ['dokument', 'organ']);
-		if (!category) return;
+		var categoryKey = this._getNestedProperty(this._data, ['dokument', 'organ']);
+		if (!categoryKey) return;
+		if (!CATEGORIES.hasOwnProperty(categoryKey)) {
+			console.warn('Category key', categoryKey, 'has no translation');
+		}
+		var category = CATEGORIES[categoryKey] || categoryKey;
 
 		var votings = this._getVotings();
 
