@@ -17,6 +17,7 @@ Meteor.startup(function() {
 			console.log('Please allow a couple of minutes for it to finnish.');
 			console.log();
 			indexAll();
+			synchronizeNew();
 		}
 		SyncedCron.add({
 			name: 'Check for new bills',
@@ -98,16 +99,9 @@ Meteor.startup(function() {
 
 		bills.forEach(function(bill, i) {
 			progress.tick(i);
-			var id = bill._id;
-			var documentStatus;
-			try {
-				documentStatus = new DocumentStatus(id);
-			}
-			catch(e) {
-				failCount++;
-				return;
-			}
-			documentStatus.synchronizeVotings();
+			let id = bill._id;
+			let success = synchronizeOne(id);
+			failCount += !success;
 		});
 
 		progress.done();
@@ -115,5 +109,35 @@ Meteor.startup(function() {
 		if (failCount > 0) {
 			console.warn('Synchronization of', failCount, 'bills failed. Probably because these documents has not been published yet. Trying again later.');
 		}
+	}
+
+	function synchronizeOne(id) {
+		let documentStatus;
+		documentStatus = new DocumentStatus(id);
+
+		let isReady = documentStatus.isReady();
+		if (!isReady) return false;
+
+		let title = documentStatus.getTitle();
+		if (!title) return false;
+
+		let summary = documentStatus.getSummary();
+		if (!summary) return false;
+
+		let type = documentStatus.getType();
+		if (!type) return false;
+
+		let proposals = documentStatus.getProposals();
+		if (!proposals) return false;
+
+		let billUpdate = {
+			title: title,
+			summary: summary,
+			votings: proposals,
+			category: type,
+			isReady: isReady,
+		};
+		Bills.update({ _id: id }, { $set: billUpdate });
+		return true;
 	}
 });
